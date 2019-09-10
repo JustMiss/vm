@@ -1,0 +1,341 @@
+// 顶部导航条
+@mixin node_down {
+    background-position: -71px 0;
+}
+@mixin node_up {
+    background-position: -85px 0;
+}
+@mixin box_shadow {
+    box-shadow: 0 1px 1px #ccc;
+}
+@mixin hover_block {
+    padding: 6px 0 12px 0;
+    background: #ffffff;
+    color: #a4a4a4;
+    position: absolute;
+    right: 0;
+    top: 36px;
+    z-index: 2;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    display: none;
+    @include box_shadow();
+}
+$font-color:#ca151d !default;
+.nav_sreach nav{
+    background: #f9f9f9;
+    height: 36px;
+    .contain{
+        line-height: 36px;
+    }
+    a{
+        color: #a4a4a4;
+        position: relative;
+        span{
+            @include node_down();
+            display: block;
+            height: 14px;
+            width: 14px;
+            position: absolute;
+            top: -1px;
+            right: -5px;
+        }
+    }
+    li:hover a{
+        color: $font-color;
+    }
+    li:hover span{
+        @include node_up();
+    }
+    li{
+        float: left;
+        padding-right: 6px;
+        position: relative;
+    }
+    .nav_left{
+        font-size: 12px;
+        li:not(:first-child):before{
+            content: '|';
+            display: inline-block;
+            padding-right: 4px;
+            color: #a4a4a4;
+        }
+        .nav_last{
+            position: absolute;
+            padding:0 15px 0 10px;
+            top: 0px;
+            left: 0px;
+            width: 60px;
+            span{
+                right: -15px;
+            }
+        }
+        .nav_last:hover{
+            background: #ffffff;
+        }
+        .more_hide{
+            width: 120px;
+            @include hover_block();
+            
+        }
+        .nav_last:hover .more_hide{
+            display: block;
+        }
+        dd{
+            text-align: center;
+        }
+        dd:hover{
+            color: $font-color;
+            cursor: pointer;
+        }
+    }
+    .nav_right{
+        position: relative;
+        font-size: 12px;
+        .login:hover a{
+            color: $font-color;
+        }
+        .register:hover a{
+            color: $font-color;
+        }
+        .unlist a{
+            padding-right: 0;
+        }
+        li a{
+            padding-right: 10px;
+        } 
+        li:not(:first-child):before{
+            content: '|';
+            padding-right: 4px;
+            color: #a4a4a4;
+        }
+        li{
+            div{
+                @include hover_block();
+            }
+            .n_client{
+                width: 80px;
+                dd{
+                    text-align: center;
+                }
+                dd:hover{
+                    color: $font-color;
+                    cursor: pointer;
+                }
+            }
+            .n_nav{
+                width: 900px;
+                a:hover{
+                    color: $font-color;
+                }
+            }
+            .nn_index{
+                display: block;
+                margin: 37px 46px 20px;
+                height: 70px;
+                width: 50px;
+                color: #a4a4a4;
+                text-align: center;
+                position: relative;
+                span{
+                    display: block;
+                    border-radius: 50%;
+                    width: 50px;
+                    height: 50px;
+                    background: #f9f9f9;
+                    line-height: 50px;
+                    font-size: 30px;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                }
+                i{
+                    display: block;
+                    width: 50px;
+                    position: absolute;
+                    left: 0;
+                    top: 41px;
+                }
+            }
+            .nn_list{
+                width: 185px;
+                margin-top: 22px;
+                p{
+                    margin-bottom: 8px;
+                    font-size: 16px;
+                    color: #333;
+                    font-weight: 700;
+                    line-height: 20px;
+                }
+                a{
+                    display: block;
+                    float: left;
+                    line-height: 20px;
+                    color: #777;
+                    width: 80px;
+                    margin-bottom: 4px;
+                }
+            }
+            .n_phone{
+                width: 244px;
+                padding: 20px 24px;
+            }
+            .np_left{
+                width: 90px;
+                height: 90px;
+                margin-right: 10px;
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .np_right{
+                p{
+                    font-size: 16px;
+                    font-weight: 700;
+                    color: #333;
+                }
+                i{
+                    font-size: 12px;
+                    color: $font-color;
+                }
+            }
+        }
+        li:hover div{
+            display: block;
+        }
+        .nav_car{
+            padding: 0 10px 0 25px;
+            color: #a4a4a4;
+            position: relative;
+            background: #f2f2f2;
+            cursor: pointer;
+        }
+        .nav_car:hover{
+            background: #ffffff;
+            color: #ca151d;
+        }
+        .nav_car::before{
+            content: '';
+            display: block;
+            width: 20px;
+            height: 12px;
+            background: url(https://res8.vmallres.com/20190630/css/../images/echannel/icon/icon-common.svg) no-repeat;
+            background-position: -99px -4px;
+            position: absolute;
+            top: 11px;
+            left: 3px;
+            line-height: 12px;
+        }
+        .nav_car:hover::before{
+            background-position: -119px -4px;
+        }
+    }
+}
+.nav_sreach .sreach{
+    height: 41px;
+    padding: 18px 0 15px;
+    .sreach_left{
+        .logo{
+            display: block;
+            img{
+                height: 41px;
+                display: block;
+                margin-right: 34px;
+            }
+        }
+        li{
+            float: left;
+            height: 41px;
+            line-height: 41px;
+            a{
+                margin-right: 15px;
+                font-size: 16px;
+                color: #333;
+            }
+        }
+        .sreach_img{
+            display: inline-block;
+            margin: 7px 24px 0 0;
+            height: 24px;
+            img{
+                height: 100%;
+                display: block;
+                cursor: pointer;
+            }
+        }
+        li:hover a{
+            color: $font-color;
+        }
+    }
+    .sreach_right{
+        height: 30px;
+        padding: 0 10px;
+        border: 1px solid #a4a4a4;
+        border-radius: 15px;
+        position: relative;
+        background: #f2f2f2;
+        #sreach_input{
+            height: 25px;
+            border: 0;
+            outline: 0;
+            width: 275px;
+            background: transparent;
+        }
+        .sreach_submit{
+            border: 0;
+            outline: 0;
+            background: transparent;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+        .sreach_hint{
+            position: absolute;
+            top: 8px;
+            right: 30px;
+            a{
+                text-indent: 15px;
+                font-size: 12px;
+                color: #a4a4a4;
+            }
+            a:hover{
+                color: $font-color;
+            }
+        }
+        .sreach_hide{
+            width: 320px;
+            position: absolute;
+            top: 40px;
+            left: 0;
+            border-radius: 10px;
+            @include box_shadow();
+            height: 300px;
+            background: #ffffff;
+            display: none;
+            z-index: 2;
+            dt{
+                padding: 10px;
+                color: #a4a4a4;
+            }
+            dd{
+                padding: 5px 10px;
+            }
+            a{
+                color: #333;
+            }
+            dd:hover{
+                background: #ccc;
+            }
+        }
+    }
+}
+.login_html{
+    position:fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: none;
+    z-index: 10;
+}

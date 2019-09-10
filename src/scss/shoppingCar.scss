@@ -1,0 +1,13 @@
+@charset "utf-8";
+// 引入公共css文档
+@import 'public';
+//版心宽度
+.contain{
+    width: 1200px;
+    margin: 0 auto;
+    font-size: 12px;
+}
+//头部内容
+@import 'index_header';
+// 购物车内容列表区
+@import 'sc_content';

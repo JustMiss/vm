@@ -1,0 +1,86 @@
+@charset "utf-8";
+/* CSS Document */
+body,
+ol,
+ul,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+th,
+td,
+dl,
+dd,
+form,
+fieldset,
+legend,
+input,
+textarea,
+select{
+    margin:0;padding:0
+} 
+body{
+    font:12px "宋体","Arial Narrow",HELVETICA;
+    background:#fff;
+}
+a{
+    text-decoration:none
+}
+b,strong{
+    font-weight: 100;
+}
+em,
+i{
+    font-style:normal
+}
+li{
+    list-style:none
+}
+img{
+    border:0
+} 
+table{
+    border-collapse:collapse;
+    border-spacing:0
+}
+p{
+    word-wrap:break-word;
+    word-break:break-all;
+    white-space:pre
+}
+.left{
+    float:left
+}
+.right{
+    float:right;
+}
+.clear:after{
+    content:"." ;
+    clear:both;
+    height:0;
+    overflow:hidden;
+    visibility:hidden;
+    display:block;
+}
+.node{
+    background: url(https://res8.vmallres.com/20190630/css/../images/echannel/icon/icon-common.svg) no-repeat;
+}
+@font-face {
+    font-family: 'iconfont';
+    src: url('../font_download/');
+    src: url('../font_download/iconfont.eot?#iefix') format('embedded-opentype'),
+        url('../font_download/iconfont.woff2') format('woff2'),
+        url('../font_download/iconfont.woff') format('woff'),
+        url('../font_download/iconfont.ttf') format('truetype'),
+        url('../font_download/iconfont.svg#iconfont') format('svg');
+  }
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

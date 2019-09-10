@@ -1,0 +1,230 @@
+<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width, initial-scale=1.0"><meta http-equiv=X-UA-Compatible content="ie=edge"><title>用户注册</title><style>
+        span {
+            font-size: 12px;
+        }
+
+        i {
+            cursor: pointer;
+        }
+    </style></head><body><fieldset style="width:600px;margin:0 auto;"><legend>用户注册</legend><form action=http://localhost/August/project/php/register.php class=form method=POST><p><label>用&nbsp;&nbsp;户&nbsp;&nbsp;名：</label> <input type=text name=username> <span></span></p><p><label>设置密码：</label> <input type=password name=password> <span></span></p><p><label>确认密码：</label> <input type=password> <span></span></p><p><label>手机号码：</label> <input type=text name=phonenum> <span></span></p><p><label>验证确认：</label> <input type=text> <i>1234</i> <span></span></p><input type=submit value=同意协议并注册></form></fieldset><script src=https://cdn.bootcss.com/jquery/1.11.0/jquery.js></script><script>
+        //1.设置区间随机数 参数为最小值，最大值
+        function ranNum(min, max) {
+            return Math.round(Math.random() * (max - min) + min);
+        }
+        //2.单数补零 参数为需要补零的对象
+        function turnDouble(n) {
+            return n > 9 ? n : '0' + n;
+        }
+        
+        //表单验证
+        const aInput = document.querySelectorAll('input');
+        const aSpan = document.querySelectorAll('span');
+        const oI = document.querySelector('i');
+        const oForm = document.querySelector('.form');
+
+        function yzm() {
+            return Math.random() > 0.5 ? String.fromCharCode(ranNum(48, 57)) : String.fromCharCode(ranNum(65, 90));
+        }
+        oI.innerHTML = yzm() + '' + yzm() + '' + yzm() + '' + yzm();
+
+        oI.onclick = function () {
+            oI.innerHTML = yzm() + '' + yzm() + '' + yzm() + '' + yzm();
+        }
+
+        let nameflag = true;
+        aInput[0].onfocus = function () {
+            aSpan[0].innerHTML = '请输入 4~16位数字字母中文下划线';
+            aSpan[0].style.color = '#ccc';
+        }
+        aInput[0].onblur = function () {
+            if (aInput[0].value !== '') {
+                let reg = /^(\w|[\u4e00-\u9fa5]){4,11}$/;
+                if (reg.test(aInput[0].value)) {
+                    $.ajax({
+                        type: "post",
+                        url: "http://localhost/August/project/php/namechecked.php",
+                        data:{
+                            name:aInput[0].value
+                        }
+                    }).done(function(data){
+                        console.log(data);
+                        if(data == 'null'){
+                            aSpan[0].innerHTML = '√';
+                            aSpan[0].style.color = 'green';
+                            nameflag = true;
+                        }else{
+                            aSpan[0].innerHTML = '该用户名已被注册';
+                            aSpan[0].style.color = 'red';
+                            nameflag = false;
+                        } 
+                    });
+                } else {
+                    aSpan[0].innerHTML = '用户名错误请重新输入';
+                    aSpan[0].style.color = 'red';
+                    nameflag = false;
+                }
+            } else {
+                aSpan[0].innerHTML = '用户名不可为空';
+                aSpan[0].style.color = 'red';
+                nameflag = false;
+            }
+        }
+
+        let passflag = true;
+        aInput[1].onfocus = function () {
+            aSpan[1].innerHTML = '请输入4-16位数字字母下划线作为密码';
+            aSpan[1].style.color = '#ccc';
+        }
+        aInput[1].onblur = function () {
+            if (aInput[1].value !== '') {
+                let reg = /^\w{4,16}$/;
+                if (reg.test(aInput[1].value) && passflag) {
+                    aSpan[1].innerHTML = '√';
+                    aSpan[1].style.color = 'green';
+                    passflag = true;
+                    aInput[2].focus();
+                } else {
+                    aSpan[1].innerHTML = '密码格式不正确或强度不足，请重新输入';
+                    aSpan[1].style.color = 'red';
+                    passflag = false;
+                }
+            } else {
+                aSpan[1].innerHTML = '密码不可为空';
+                aSpan[1].style.color = 'red';
+                passflag = false;
+            }
+        }
+        aInput[1].oninput = function () {
+            let text = aInput[1].value;
+            let num = 0;
+            let upWord = /[A-Z]+/;
+            let downWord = /[a-z]+/;
+            let numReg = /\d+/;
+            if (upWord.test(text)) {
+                num++;
+            }
+            if (downWord.test(text)) {
+                num++;
+            }
+            if (numReg.test(text)) {
+                num++;
+            }
+            switch (true) {
+                case num = 1 && text.length < 8:
+                    aSpan[1].innerHTML = '密码强度：弱';
+                    aSpan[1].style.color = 'red';
+                    passflag = false;
+                    break;
+                case num = 2 && text.length >= 8:
+                    aSpan[1].innerHTML = '密码强度：中';
+                    aSpan[1].style.color = 'blue';
+                    passflag = true;
+                    break;
+                case num = 3 && text.length >= 12:
+                    aSpan[1].innerHTML = '密码强度：强';
+                    aSpan[1].style.color = 'green';
+                    passflag = true;
+                    break;
+            }
+        }
+
+        let againflag = true;
+        aInput[2].onfocus = function () {
+            aSpan[2].innerHTML = '请再次输入密码';
+            aSpan[2].style.color = '#ccc';
+        }
+        aInput[2].onblur = function () {
+            if (aInput[2].value !== '') {
+                if (aInput[2].value === aInput[1].value) {
+                    aSpan[2].innerHTML = '√';
+                    aSpan[2].style.color = 'green';
+                    againflag = true;
+                } else {
+                    aSpan[2].innerHTML = '两次密码不一致，请重新输入';
+                    aSpan[2].style.color = 'red';
+                    againflag = false;
+                    aInput[2].value = '';
+                }
+            } else {
+                aSpan[2].innerHTML = '密码不可为空';
+                aSpan[2].style.color = 'red';
+                againflag = false;
+            }
+        }
+
+        let phoneflag = true;
+        aInput[3].onfocus = function () {
+            aSpan[3].innerHTML = '请输入正确的手机号码';
+            aSpan[3].style.color = '#ccc';
+        }
+        aInput[3].onblur = function () {
+            if (aInput[3].value !== '') {
+                let reg = /^\d{11}$/;
+                if (reg.test(aInput[3].value)) {
+                    aSpan[3].innerHTML = '√';
+                    aSpan[3].style.color = 'green';
+                    phoneflag = true;
+                } else {
+                    aSpan[3].innerHTML = '输入的手机号有误请重新输入';
+                    aSpan[3].style.color = 'red';
+                    phoneflag = false;
+                }
+            } else {
+                aSpan[3].innerHTML = '手机号码不可为空';
+                aSpan[3].style.color = 'red';
+                phoneflag = false;
+            }
+        }
+
+        let testflag = true;
+        aInput[4].onfocus = function () {
+            aSpan[4].innerHTML = '请输入正确的验证码';
+            aSpan[4].style.color = '#ccc';
+        }
+        aInput[4].onblur = function () {
+            if (aInput[4].value !== '') {
+                if (aInput[4].value = oI.innerHTML) {
+                    aSpan[4].innerHTML = '√';
+                    aSpan[4].style.color = 'green';
+                    testflag = true;
+                } else {
+                    aSpan[4].innerHTML = '验证码输入误请重新输入';
+                    aSpan[4].style.color = 'red';
+                    testflag = false;
+                }
+            } else {
+                aSpan[4].innerHTML = '验证码不可为空';
+                aSpan[4].style.color = 'red';
+                testflag = false;
+            }
+        }
+
+        oForm.onsubmit = function () {
+            if(aInput[0].value === ''){
+                nameflag=false;
+                aInput[0].focus();
+            }
+            if(aInput[1].value === ''){
+                passflag=false;
+                aInput[1].focus();
+            }
+            if(aInput[2].value === ''){
+                againflag=false;
+                aInput[2].focus();
+            }
+            if(aInput[3].value === ''){
+                phoneflag=false;
+                aInput[3].focus();
+            }
+            if(aInput[4].value === ''){
+                testflag=false;
+                aInput[4].focus();
+            }
+            if (!nameflag || !passflag || !againflag || !phoneflag || !testflag) {
+                alert('请提交正确完整的注册信息');
+                return false;
+            }
+        }
+
+
+    </script></body></html>

@@ -1,0 +1,16 @@
+@charset "utf-8";
+// 引入公共css文档
+@import 'public';
+//版心宽度
+.contain{
+    width: 1200px;
+    margin: 0 auto;
+    font-size: 14px;
+}
+// 详情页头部
+@import 'index_header';
+.nav_sreach{
+    box-shadow: 0 2px 4px #eeeeee;
+}
+// 详情页内容区
+@import 'details_content';

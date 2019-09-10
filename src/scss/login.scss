@@ -1,0 +1,143 @@
+@charset "utf-8";
+//公共css属性，常见属性和样式重置
+@import 'public';
+// 版心宽度
+.login_contain{
+    width: 380px;
+    margin: 0 auto;
+}
+
+// 遮盖幕布
+.cover{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 998;
+}
+
+//登录窗口
+
+.ms_form{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-left: -250px;
+    margin-top: -300px;
+    width: 500px;
+    height: 600px;
+    background: #ffffff;
+    z-index: 999;
+}
+.header{
+    height: 30px;
+    background: #c70000;
+    line-height: 30px;
+    cursor: move;
+    position: relative;
+    span{
+        font-size: 16px;
+        color: #ffffff;
+        position: absolute;
+        right: 10px; 
+        cursor: pointer;
+    }
+}
+.wr_login{
+    font-size: 20px;
+    color: #b40707;
+    padding: 20px 55px;
+}
+.ph_login{
+    font-size: 20px;
+    color: #333;
+    cursor: pointer;
+    padding: 20px 55px;
+}
+.ph_login:hover{
+    color: #b40707;
+}
+.form{
+    position: relative;
+    padding-top: 50px;
+}
+.name{
+    position: absolute;
+    color: rgb(204, 204, 204);
+    left: 20px;
+    top: 87px;
+    font-size: 16px;
+}
+.pass{
+    position: absolute;
+    color: rgb(204, 204, 204);
+    left: 20px;
+    top: 155px;
+    font-size: 16px;
+}
+.input{
+    height: 46px;
+    margin: 10px;
+    outline: 0;
+    font-size: 16px;
+    width: 100%;
+    border:0;
+    border-bottom: 1px solid rgb(204, 204, 204);
+}
+.massage{
+    display: block;
+    padding: 10px 10px 20px;
+    color: #0064cc;
+    cursor: pointer;
+}
+.massage:hover{
+    color: #007dff;
+}
+.submit{
+    margin: 0 auto;
+    display: block;
+    background-color: #b40707;
+    text-decoration: none;
+    color: #fff;
+    border-color: #c70000;
+    border-width: 1px;
+    border-style: solid;
+    width: 326px;
+    border-radius: 22px;
+    line-height: 44px;
+    height: 44px;
+    font-weight: 700;
+    font-size: 14px;
+    background-image: none;
+    cursor: pointer;
+    border-radius: 26px;
+    text-align: center;
+    outline: 0;
+}
+.submit:hover{
+    background: #c70000;
+}
+.login_checked{
+    position: absolute;
+    left: 20px;
+    bottom: -50px;
+    text-indent: 25px;
+    input{
+        width: 15px;
+        height: 15px;
+        position: absolute;
+        left: 0;
+        top: -1px;
+    }
+}
+.toreg{
+    position: absolute;
+    right: 20px;
+    bottom: -50px;
+    color: #0064cc;
+}
+.toreg:hover{
+    color: #007dff;
+}
